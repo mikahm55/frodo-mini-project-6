@@ -29,6 +29,36 @@ def rg(a):
         
         statement=print(dih[a])
         return(statement)
+def read_guess(prompt="Guess a number between 1 and 5: "):
+    """AI-assisted. Return a valid integer guess, retrying bad input."""
+    while True:
+        try:
+            guess = int(input(prompt))
+        except ValueError:
+            print("Enter a whole number from 1 to 5.")
+            continue
+        if 1 <= guess <= 5:
+            return guess
+        print("Enter a whole number from 1 to 5.")
+
+
+def resolve_attack(guess, enemy_health):
+    """AI-assisted. Return remaining enemy HP and actual damage dealt."""
+    damage = enemy_health if guess == r.randint(1, 5) else r.randint(1, 5)
+    remaining = max(0, enemy_health - damage)
+    return remaining, enemy_health - remaining
+
+
+
+def show_map():
+    """AI-assisted. Display the supplied campus map until its window closes."""
+    root = tk.Tk()
+    root.title("Frodo's Adventure - close this map to continue")
+    picture = tk.PhotoImage(file="image.png")
+    tk.Label(root, image=picture).pack()
+    root.mainloop()
+
+
 #hashtag awesome
 enemy_catalog={
     "squirell": 20,
@@ -56,7 +86,7 @@ level = 1
 health = 50 + 2*level
 enemy_health=20
 while enemy_health > 0:
-    dice=input("guess a number between 1 and 5: ")
+    dice=read_guess()
     if float(dice) >= 1 and float(dice) <= 5:
         h=r.randint(1,5)
         if float(dice)==h:
@@ -102,11 +132,4 @@ if enemy_health <= 0:
     t.sleep(4)
     print("Status Report:  Current Map of A&M as of 11/20/2026")
     t.sleep(2)
-    root = tk.Tk()
-    img = tk.PhotoImage(file="image.png")
-    #mikah
-    label = tk.Label(root, image=img)
-    label.image = img
-    label.pack()
-    #mikah
-    root.mainloop()
+    show_map()
