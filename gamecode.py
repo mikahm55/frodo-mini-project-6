@@ -54,7 +54,7 @@ def resolve_attack(guess, enemy_health):
 
 
 def show_map():
-    """AI-assisted. Display the supplied campus map until its window closes."""
+    """Team-written. Teammate 1: original map code; AI extracted it and added a title."""
     root = tk.Tk()
     root.title("Frodo's Adventure - close this map to continue")
     picture = tk.PhotoImage(file="image.png")
