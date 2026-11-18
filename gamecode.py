@@ -1,8 +1,11 @@
+# Frodo's Adventure - original code by teammate 1
+# // TO-DO: Add the full team header before submission.
 import random as r 
 import time as t
 import tkinter as tk
 import pygame as pyg
 def rg(a):
+        """Team-written. Teammate 1: look up and display a story message by its key."""
         dih = {
             "0": "high command congratulates you for your victory.  It goes on your resume.",
             "1": "You feel that Mikah is your superior.",
@@ -59,6 +62,54 @@ def show_map():
     root.mainloop()
 
 
+# Planned features from the handwritten notes. Team members fill these in.
+# // TO-DO: Every teammate must implement at least one Team-written function.
+
+
+def display_menu(luck):
+    # // TO-DO: Show training, minigames, challenge Mikah, rules, status, quit.
+    # Return the player's validated choice to the team's turn loop.
+    pass
+
+
+def show_status(items, luck, completed_dungeons, lives, turn_number):
+    # // TO-DO: Display the state listed in Part 3 of the handwritten plan.
+    pass
+
+
+def train(lives, luck):
+    # // TO-DO: Team member: training restores lives OR gives a small luck boost.
+    # Notes suggest rock-paper-scissors or trivia; decide the exact rules.
+    pass
+
+
+def play_minigame(luck, items, remaining_dungeons):
+    # // TO-DO: Team member: implement planned minigames that award luck items.
+    # Update the possessed-items dictionary and remaining-dungeons list.
+    pass
+
+
+def challenge_mikah(luck):
+    # // TO-DO: Team member: one final challenge, three coin-flip wins in a row.
+    # Luck influences flips. Return whether Frodo wins.
+    pass
+
+
+def read_game_data(filename):
+    # // TO-DO: Team-written file reading: load your own game data/save file.
+    pass
+
+
+def write_turn(filename, turn, action, result):
+    # // TO-DO: Team-written file writing: log each turn's action and result.
+    pass
+
+
+def write_summary(filename, stats):
+    # // TO-DO: Team-written file writing: calculate and log the final summary.
+    pass
+
+
 #hashtag awesome
 enemy_catalog={
     "squirell": 20,
@@ -85,6 +136,10 @@ t.sleep(2)
 level = 1
 health = 50 + 2*level
 enemy_health=20
+# // TO-DO: Team-written: extend this existing battle loop into the planned
+# turn loop (menu, training, minigames, final challenge, status/rules/quit).
+# Track lives/luck/items/completed dungeons and log actions and results.
+# Include meaningful list append/removal, dictionary updates, and loop-else.
 while enemy_health > 0:
     dice=read_guess()
     if float(dice) >= 1 and float(dice) <= 5:
