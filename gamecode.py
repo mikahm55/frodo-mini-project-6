@@ -76,13 +76,31 @@ def show_map():
 
 
 def display_menu(luck):
-    # // TO-DO: Show training, minigames, challenge Mikah, rules, status, quit.
-    # Return the player's validated choice to the team's turn loop.
+    """Team-written. // TO-DO: implement and test the pseudocode below."""
+    # // TO-DO: TEAM IMPLEMENTATION PSEUDOCODE
+    # Receive current luck so the menu can show how prepared Frodo is.
+    # Print attack/train/minigame/challenge/rules/status/map/quit and brief descriptions.
+    # Repeat: read input, strip surrounding spaces, convert to lowercase.
+    # IF the input is in the list of commands: RETURN that command string.
+    # ELSE: explain the allowed choices and ask again (no turn consumed).
+    # Integration: replace the main loop's menu print/input statements with
+    # choice = display_menu(luck). Keep the existing branches below that call.
     pass
 
 
 def show_status(items, luck, completed_dungeons, lives, turn_number):
-    # // TO-DO: Display the state listed in Part 3 of the handwritten plan.
+    """Team-written. // TO-DO: implement and test the pseudocode below."""
+    # // TO-DO: TEAM IMPLEMENTATION PSEUDOCODE
+    # Print lives, luck, and the number of completed turns received as parameters.
+    # IF items is empty: print that Frodo owns no luck items yet.
+    # ELSE: FOR each item name and bonus in items: print name and luck bonus.
+    # IF completed_dungeons is empty: explain that no dungeon is complete yet.
+    # ELSE: FOR each completed dungeon: print its name.
+    # This function only displays state; do not change the lists or dictionary.
+    # Return None (display-only function).
+    # Integration: call show_status(items, luck, completed_dungeons, lives,
+    # turn_number) in the status branch, then continue without spending a turn.
+    # The loop already prints HP separately; optionally add HP as a parameter.
     pass
 
 
@@ -156,23 +174,70 @@ def play_minigame(luck, items, remaining_dungeons):
 
 
 def challenge_mikah(luck):
-    # // TO-DO: Team member: one final challenge, three coin-flip wins in a row.
-    # Luck influences flips. Return whether Frodo wins.
+    """Team-written. // TO-DO: implement and test the pseudocode below."""
+    # // TO-DO: TEAM IMPLEMENTATION PSEUDOCODE
+    # Receive Frodo's total luck, including training and item bonuses.
+    # Choose and document a probability formula; for example:
+    # win_probability = min(0.95, 0.50 + 0.02 * max(0, luck)).
+    # Explain that luck raises each flip's chance, but never guarantees victory.
+    # FOR flip_number from 1 through 3:
+    #     Generate a fresh random number between zero and one using r.random().
+    #     IF the number is below win_probability: print that this flip was won.
+    #     ELSE: print that the streak failed and RETURN False immediately.
+    # ELSE on the for loop: all three flips succeeded; RETURN True.
+    # Do not retry the entire challenge here: the main loop allows one attempt.
+    # Do not change global state; the caller marks challenge_attempted, won,
+    # outcome, and gr after receiving the Boolean result.
+    # Keep None only while this function is unfinished, not for a real loss.
     pass
 
 
 def read_game_data(filename):
-    # // TO-DO: Team-written file reading: load your own game data/save file.
+    """Team-written. // TO-DO: implement and test the pseudocode below."""
+    # // TO-DO: TEAM IMPLEMENTATION PSEUDOCODE
+    # Create a small text data file yourselves beside gamecode.py.
+    # Suggested format: one enemy per line, e.g. squirell,20 / Pidgeon,30 / Mikah,80.
+    # Receive its filename only, not a machine-specific absolute path.
+    # Start an empty enemy dictionary. TRY opening filename for reading using with.
+    # FOR each nonempty line: split on comma; require exactly name and HP.
+    # Convert HP to int; reject empty/duplicate names or nonpositive HP with ValueError.
+    # Require the expected enemies, including Mikah, before returning the dictionary.
+    # EXCEPT OSError/ValueError: explain the filename and error, then either stop
+    # startup clearly or return a documented safe default; never silently use bad data.
+    # Integration: replace the literal enemy_catalog with this function's return.
+    # Build remaining_dungeons from all enemy names except Mikah explicitly,
+    # rather than depending on which line happened to be last in the file.
     pass
 
 
 def write_turn(filename, turn, action, result):
-    # // TO-DO: Team-written file writing: log each turn's action and result.
+    """Team-written. // TO-DO: implement and test the pseudocode below."""
+    # // TO-DO: TEAM IMPLEMENTATION PSEUDOCODE
+    # Receive filename, turn number, chosen action, and the human-readable result.
+    # TRY opening filename in append mode with a with block and UTF-8 encoding.
+    # Write one record containing all three values and a newline; close automatically.
+    # EXCEPT OSError: show a clear logging error instead of crashing the game.
+    # Integration: initialize/clear the log ONCE at startup using team-written code.
+    # Call this function after appending each completed action to turn_log.
+    # Also record quit explicitly before the quit branch continues/exits.
+    # Failed minigame attempts are real actions: decide to count/log them and update
+    # the current None-result branch accordingly; invalid menu input is not a turn.
     pass
 
 
 def write_summary(filename, stats):
-    # // TO-DO: Team-written file writing: calculate and log the final summary.
+    """Team-written. // TO-DO: implement and test the pseudocode below."""
+    # // TO-DO: TEAM IMPLEMENTATION PSEUDOCODE
+    # Receive filename and a final stats dictionary assembled by the main program.
+    # Include outcome, turn count, completed dungeons, items, lives, luck, turn_log.
+    # Calculate completed_count = length of completed_dungeons.
+    # Calculate earned_item_luck = sum of the item dictionary's bonus values.
+    # Count attack/train/minigame/challenge entries by scanning turn_log.
+    # Calculate a useful rate, e.g. completed_count / turns; use zero if turns is zero.
+    # TRY opening filename in append mode with a with block and UTF-8 encoding.
+    # Write the outcome plus totals and calculated values with descriptive labels.
+    # EXCEPT OSError: print the error; keep the console ending readable.
+    # Integration: build stats and call this once after the main loop on win/loss/quit.
     pass
 
 
