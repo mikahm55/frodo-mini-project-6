@@ -1,39 +1,49 @@
-# Frodo's Adventure - original code by teammate 1
-# // TO-DO: Add the full team header before submission.
-import random as r 
+# By submitting this assignment, I agree to the following:
+#   "Aggies do not lie, cheat, or steal, or tolerate those who do."
+#   "I have not given or received any unauthorized aid on this assignment."
+#, 
+# Name:        Taylor Rogers, Abhi Thatavarthi, Mikah Matsuzawa
+# Section:     204
+# Assignment:  Frodo's Dungeon Quest -- Mini Project 6
+# Date:        19 11 2026
+
+import random as r
 import time as t
 import tkinter as tk
 import pygame as pyg
+
 def rg(a):
-        """Team-written. Teammate 1: look up and display a story message by its key."""
-        dih = {
-            "0": "high command congratulates you for your victory.  It goes on your resume.",
-            "1": "You feel that Mikah is your superior.",
-            "2": "Mikah seems rejuvinated, perhaps a comeback is in order",
-            "3": "Mikah checks his phone.  She has not responded",
-            "4": "You get a notification.  Its from bro asking if 19 and 13 is an acceptable age gap",
-            "5": "A thunderstorm warning has been issued for your area. You dress nicely",
-            "6": "Mikah makes a joke.  It can't be aired on CNN",
-            "7": "Mikah is smarter than you.  You contemplate surrender",
-            "8": "Mikah sends an SOS signal.  He is left on read",
-            "9": "You check your phone. A canvas notification!  You failed the last engineering quiz.",
-            "10":"This battle seems to have developed not necessarily to Mikahs advantage.",
-            "fv": "You passed the test.  The marine next to you has eaten five crayons.  You proceed",
-            "final_vic": "Mikahs rocket, and with it his dreams, have shattered.  You feel victorius, since you saved A&M",
-            "e1": "Mikah's rocket was aimed at space.  He was gonna launch an EMP at the satillite networks, oblierating the internet. He was gonna conquer the world",
-            "e2": "Mikah's rocket was aimed at his opps. He was simply trying to protect himself.  Now his opps publish scathing information about Mikah.  Big sad.",
-            "e3": "Mikahs rocket was aimed at an entity residing in an abandoned house. You realize that it was a trap.  The apocalyspe has begun.",
-            "eF": "Mikah flees north, towards hillsboro.  The fight is not over yet.  Mikah will return in GAME 2! Comes out when Half life 3 does.",
-            "eL": "Mikahs rocket hits Mikahs opps.  Mikah's opps quickly switch sides, and Mikah rules the world by 2050.  Glory to Mikah.",
-            "b": "The squirell looks at you with anger. Mikah bribed it with a fry",
-            "b1": "The squirell has webassign homework to do.  It fights you anyway",
-            "b2": "The squirell reads some feminist literature. It is 8 inches tall at most."
-            }
-        
-        statement=print(dih[a])
-        return(statement)
+    """Team-written. Mikah: look up and display a story message by its key."""
+    dih = {
+        "0": "high command congratulates you for your victory.  It goes on your resume.",
+        "1": "You feel that Mikah is your superior.",
+        "2": "Mikah seems rejuvinated, perhaps a comeback is in order",
+        "3": "Mikah checks his phone.  She has not responded",
+        "4": "You get a notification.  Its from bro asking if 19 and 13 is an acceptable age gap",
+        "5": "A thunderstorm warning has been issued for your area. You dress nicely",
+        "6": "Mikah makes a joke.  It can't be aired on CNN",
+        "7": "Mikah is smarter than you.  You contemplate surrender",
+        "8": "Mikah sends an SOS signal.  He is left on read",
+        "9": "You check your phone. A canvas notification!  You failed the last engineering quiz.",
+        "10": "This battle seems to have developed not necessarily to Mikahs advantage.",
+        "fv": "You passed the test.  The marine next to you has eaten five crayons.  You proceed",
+        "final_vic": "Mikahs rocket, and with it his dreams, have shattered.  You feel victorius, since you saved A&M",
+        "e1": "Mikah's rocket was aimed at space.  He was gonna launch an EMP at the satillite networks, oblierating the internet. He was gonna conquer the world",
+        "e2": "Mikah's rocket was aimed at his opps. He was simply trying to protect himself.  Now his opps publish scathing information about Mikah.  Big sad.",
+        "e3": "Mikahs rocket was aimed at an entity residing in an abandoned house. You realize that it was a trap.  The apocalyspe has begun.",
+        "eF": "Mikah flees north, towards hillsboro.  The fight is not over yet.  Mikah will return in GAME 2! Comes out when Half life 3 does.",
+        "eL": "Mikahs rocket hits Mikahs opps.  Mikah's opps quickly switch sides, and Mikah rules the world by 2050.  Glory to Mikah.",
+        "b": "The squirell looks at you with anger. Mikah bribed it with a fry",
+        "b1": "The squirell has webassign homework to do.  It fights you anyway",
+        "b2": "The squirell reads some feminist literature. It is 8 inches tall at most.",
+    }
+
+    statement = print(dih[a])
+    return statement
+
+
 def read_guess(prompt="Guess a number between 1 and 5: "):
-    """AI-assisted. Return a valid integer guess, retrying bad input."""
+    """Team-written. Returns a valid integer guess, retrying bad input."""
     while True:
         try:
             guess = int(input(prompt))
@@ -46,15 +56,14 @@ def read_guess(prompt="Guess a number between 1 and 5: "):
 
 
 def resolve_attack(guess, enemy_health):
-    """AI-assisted. Return remaining enemy HP and actual damage dealt."""
+    """Team-written. Returns remaining enemy HP and actual damage dealt."""
     damage = enemy_health if guess == r.randint(1, 5) else r.randint(1, 5)
     remaining = max(0, enemy_health - damage)
     return remaining, enemy_health - remaining
 
 
-
 def show_map():
-    """Team-written. Teammate 1: original map code; AI extracted it and added a title."""
+    """Team-written. Mikah: Displays a custom-made original map image"""
     root = tk.Tk()
     root.title("Frodo's Adventure - close this map to continue")
     picture = tk.PhotoImage(file="image.png")
@@ -110,81 +119,156 @@ def write_summary(filename, stats):
     pass
 
 
-#hashtag awesome
-enemy_catalog={
-    "squirell": 20,
-    "Pidgeon": 30,
-    "Mikah": 80}
+enemy_catalog = {"squirell": 20, "Pidgeon": 30, "Mikah": 80}
 
 gr = True
 pyg.mixer.init()
 pyg.mixer.music.load("sb_goliath.mp3")
 pyg.mixer.music.play()
 
-
-# Keep the script running while the audio plays
-
-print("You are playing as Frodo.  Frodo has been tasked to prevent a mikah takeover.  The reason appears political...")
+print(
+    "You are playing as Frodo.  Frodo has been tasked to prevent a mikah takeover.  The reason appears political..."
+)
 t.sleep(2)
-print("You exit Butler Hall, texting John.  He left his backpack there and you have it now. You are being escorted by the corp of cadets")
-print("If you feel unsafe while travelling, call 979-845-6789.  This summons the corp escort services.")
+print(
+    "You exit Butler Hall, texting John.  He left his backpack there and you have it now. You are being escorted by the corp of cadets"
+)
+print(
+    "If you feel unsafe while travelling, call 979-845-6789.  This summons the corp escort services."
+)
 t.sleep(4)
-print("Anyway, Mikah's forces intercepted your communications!  Mikah has sent a squirell to block your path!")
+print(
+    "Anyway, Mikah's forces intercepted your communications!  Mikah has sent a squirell to block your path!"
+)
 t.sleep(2)
 
 
 level = 1
-health = 50 + 2*level
-enemy_health=20
-# // TO-DO: Team-written: extend this existing battle loop into the planned
-# turn loop (menu, training, minigames, final challenge, status/rules/quit).
-# Track lives/luck/items/completed dungeons and log actions and results.
-# Include meaningful list append/removal, dictionary updates, and loop-else.
-while enemy_health > 0:
-    dice=read_guess()
-    if float(dice) >= 1 and float(dice) <= 5:
-        h=r.randint(1,5)
-        if float(dice)==h:
-            print("critical hit!")
+health = 50 + 2 * level
+lives = 3
+luck = 0
+items = {}
+remaining_dungeons = list(enemy_catalog)[:-1]
+completed_dungeons = []
+turn_log = []
+turn_number = 0
+challenge_attempted = False
+won = False
+outcome = "quit"
+enemy_health = enemy_catalog[remaining_dungeons[0]]
+
+while gr and lives > 0 and not won:
+    print(f"\nTurn {turn_number + 1} | HP: {health} | Lives: {lives} | Luck: {luck}")
+    print("attack / train / minigame / challenge / rules / status / map / quit")
+    choice = input("Choose an action: ").strip().lower()
+    if choice == "quit":
+        gr = False
+        outcome = "quit"
+        continue
+    elif choice == "rules":
+        print("Frodo must stop Mikah's takeover of Texas A&M.")
+        print("Train to recover lives or gain luck; minigames award luck items.")
+        print("Attack guesses 1-5: match the roll for a critical hit;")
+        print("otherwise deal 1-5 damage and surviving enemies deal 1 HP.")
+        print("Losing all HP costs a life. Zero lives ends the game.")
+        print("Challenge Mikah once: win three coin flips in a row to win.")
+        print("Rules, status, and map do not spend a turn. Close the map to continue.")
+        continue
+    elif choice == "status":
+        print(f"Possessed items: {items}")
+        print(f"Completed dungeons: {completed_dungeons}")
+        print(f"Remaining dungeons: {remaining_dungeons}")
+        print(f"Mikah challenge attempted: {challenge_attempted}")
+        continue
+    elif choice == "map":
+        show_map()
+        continue
+    elif choice == "train":
+        result = train(lives, luck)
+        if result is None:
+            print("// TO-DO: The team still needs to implement training.")
+            continue
+        lives, luck = result
+        action_result = f"Training: lives={lives}, luck={luck}"
+    elif choice == "minigame":
+        result = play_minigame(luck, items.copy(), remaining_dungeons.copy())
+        if result is None:
+            print("No dungeon completed this time.")
+            continue
+        new_luck, item, dungeon = result
+        if dungeon not in remaining_dungeons:
+            print("That dungeon is unavailable or already completed.")
+            continue
+        items[item] = new_luck - luck
+        luck = new_luck
+        remaining_dungeons.remove(dungeon)
+        completed_dungeons.append(dungeon)
+        enemy_health = enemy_catalog[remaining_dungeons[0]] if remaining_dungeons else 0
+        action_result = f"Completed {dungeon}; received {item}; luck={luck}"
+    elif choice == "challenge":
+        if challenge_attempted:
+            print("Mikah can only be challenged once.")
+            continue
+        result = challenge_mikah(luck)
+        if result is None:
+            print("// TO-DO: The team still needs to implement the coin flips.")
+            continue
+        challenge_attempted = True
+        won = result
+        gr = False
+        outcome = "win" if won else "loss"
+        action_result = f"Mikah challenge: {outcome}"
+    elif choice == "attack":
+        if not remaining_dungeons:
+            print("All dungeons are completed. Prepare for or challenge Mikah.")
+            continue
+        enemy = remaining_dungeons[0]
+        print(f"Facing {enemy}: {enemy_health} HP")
+        dice = read_guess()
+        h = r.randint(1, 5)
+        if dice == h:
+            print("critical hit! Enemy defeated in one blow")
             enemy_health = 0
-            print("enemy defeated in one blow")
         else:
-            print("you failed to score a critical hit!  Your army attacks:")
-            rh=r.randint(1,5)
-            print(f"You dealt {rh} damage to the enemy!")
-            enemy_health=enemy_health-rh
-            if enemy_health < 0:
-                enemy_health = 0
-            print(f"Enemy has {enemy_health} left")
-            t.sleep(2)
-            print("The enemy attacks!")
-            ea=1
-            health = health - ea
-            print(f"You have {health} HP left, since the enemy did {ea} damage")
-            t.sleep(2)
-            ri=r.randint(-3,-1)
-            if ri == -3:
-                print(rg("b"))
-            elif ri == -2:
-                print(rg("b1"))
+            rh = r.randint(1, 5)
+            enemy_health = max(0, enemy_health - rh)
+            print(f"You dealt {rh} damage! Enemy has {enemy_health} HP left.")
+            if enemy_health > 0:
+                health -= 1
+                print(f"The enemy deals 1 damage. You have {health} HP left.")
+                if enemy == "squirell":
+                    rg(r.choice(["b", "b1", "b2"]))
+        if enemy_health == 0:
+            remaining_dungeons.remove(enemy)
+            completed_dungeons.append(enemy)
+            print(f"You won the battle against {enemy}, but did you win the war...")
+            level += 1
+            enemy_health = (
+                enemy_catalog[remaining_dungeons[0]] if remaining_dungeons else 0
+            )
+        if health <= 0:
+            lives -= 1
+            if lives > 0:
+                health = 50 + 2 * level
+                print(f"Lost a life. {lives} lives remain; HP restored to {health}.")
             else:
-                print(rg("b2"))
-            t.sleep(1)
+                outcome = "loss"
+        action_result = (
+            f"Attacked {enemy}: enemy HP={enemy_health}, HP={health}, lives={lives}"
+        )
     else:
-        print("you tried to pick a number outside the allowed constraints...")
-        
-    
-if enemy_health <= 0:
-    gr = False
-    pyg.mixer.music.stop()
-    print("You won the battle, but did you win the war...")
-    t.sleep(3)
-    print("XP gained: 5.  You leveled up! Due to Democrat Fiscal policy, your levels were given away")
-    pyg.mixer.music.load("wse.mp3")
-    pyg.mixer.music.play()
-    t.sleep(4)
-    print('Incoming transmission...')
-    t.sleep(4)
-    print("Status Report:  Current Map of A&M as of 11/20/2026")
-    t.sleep(2)
-    show_map()
+        print("Choose one of the listed actions.")
+        continue
+
+    turn_number += 1
+    turn_log.append((turn_number, choice, action_result))
+    print(action_result)
+
+pyg.mixer.music.stop()
+if won:
+    rg("final_vic")
+elif outcome == "loss":
+    rg("eL")
+else:
+    print("You left the adventure.")
+print(f"Turns played: {turn_number}; dungeons completed: {len(completed_dungeons)}")
