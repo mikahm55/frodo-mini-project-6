@@ -30,6 +30,48 @@ def rg(a):
         statement=print(dih[a])
         return(statement)
 #hashtag awesome
+
+def menu():
+        root = tk.Tk()
+        root.title("Tkinter Menu Example")
+        root.geometry("400x300")
+        
+        # 1. Create the main menu bar and attach it to the window
+        menubar = tk.Menu(root)
+        root.config(menu=menubar)
+        
+        # 2. Create a "File" dropdown menu (tearoff=0 removes the dashed line)
+        file_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="File", menu=file_menu)
+        
+        # 3. Add clickable items and a divider to the "File" menu
+        file_menu.add_command(label="Quit Game", command=ts)
+        file_menu.add_command(label="save", command=ts)
+        file_menu.add_separator()
+        file_menu.add_command(label="Exit", command=root.quit)
+        
+        # 4. Create a "game" dropdown menu
+        game_menu = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="game", menu=game_menu)
+        game_menu.add_command(label="Campaign", command=ts)
+        game_menu.add_command(label="Training", command=ts)
+        game_menu.add_command(label="Fight Big Mikah", command=ts)
+        game_menu.add_separator()
+        game_menu.add_command(label="Exit", command=root.quit)
+        
+        rules = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="Rules", menu=rules)
+        rules.add_command(label="See Rules", command=see_rules)
+        rules.add_command(label="Rodrick Rules", command=ts)
+        rules.add_command(label="Exit", command=root.quit)
+        rules.add_separator()
+        
+        status = tk.Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="see map")
+        
+        root.mainloop()
+        
+
 enemy_catalog={
     "squirell": 20,
     "Pidgeon": 30,
