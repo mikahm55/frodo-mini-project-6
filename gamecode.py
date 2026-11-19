@@ -87,15 +87,72 @@ def show_status(items, luck, completed_dungeons, lives, turn_number):
 
 
 def train(lives, luck):
-    # // TO-DO: Team member: training restores lives OR gives a small luck boost.
-    # Notes suggest rock-paper-scissors or trivia; decide the exact rules.
-    pass
+    """AI-assisted. Play rock-paper-scissors for one life or one luck point.
+
+    Return (lives, luck). Ties and losses leave both values unchanged.
+    """
+    choices = ("rock", "paper", "scissors")
+    while True:
+        player = input("Training: rock, paper, or scissors? ").strip().lower()
+        if player in choices:
+            break
+        print("Choose rock, paper, or scissors.")
+    opponent = r.choice(choices)
+    print(f"Your training opponent chose {opponent}.")
+    winning_pairs = {("rock", "scissors"), ("paper", "rock"), ("scissors", "paper")}
+    if player == opponent:
+        print("A tie! Your lives and luck stay the same.")
+    elif (player, opponent) in winning_pairs:
+        while True:
+            reward = input("You won! Restore one life or gain one luck? (life/luck): ").strip().lower()
+            if reward in ("life", "luck"):
+                break
+            print("Enter life or luck.")
+        if reward == "life":
+            lives = min(3, lives + 1)
+            print(f"Lives: {lives}/3.")
+        else:
+            luck += 1
+            print(f"Luck increased to {luck}.")
+    else:
+        print("You lost this practice round. Try training again next turn.")
+    return lives, luck
 
 
 def play_minigame(luck, items, remaining_dungeons):
-    # // TO-DO: Team member: implement planned minigames that award luck items.
-    # Update the possessed-items dictionary and remaining-dungeons list.
-    pass
+    """AI-assisted. Guess a dungeon's hidden number to earn a luck item.
+
+    Return (new_luck, item_name, dungeon_name) on success, otherwise None.
+    The caller owns inventory and dungeon-list updates; inputs stay unchanged.
+    """
+    if not remaining_dungeons:
+        print("All dungeons have already been completed.")
+        return None
+    while True:
+        print("Available dungeons: " + ", ".join(remaining_dungeons))
+        selection = input("Choose a dungeon: ").strip().lower()
+        matches = [name for name in remaining_dungeons if name.lower() == selection]
+        if matches:
+            dungeon = matches[0]
+            break
+        print("Choose one of the remaining dungeons.")
+    print("Guess the hidden number from 1 to 5. You have three attempts.")
+    target = r.randint(1, 5)
+    for attempt in range(3):
+        guess = read_guess(f"Attempt {attempt + 1}/3: ")
+        if guess == target:
+            break
+        print("Too low." if guess < target else "Too high.")
+    else:
+        print(f"The number was {target}. You can retry this dungeon next turn.")
+        return None
+    rewards = {"squirell": ("Zach chestplate", 2), "Pidgeon": ("Campus lucky charm", 3)}
+    item, bonus = rewards.get(dungeon, (f"{dungeon} luck token", 1))
+    if item in items:
+        print("You already own this dungeon's reward.")
+        return None
+    print(f"Dungeon complete! You earned {item} (+{bonus} luck).")
+    return luck + bonus, item, dungeon
 
 
 def challenge_mikah(luck):
