@@ -140,9 +140,32 @@ def mikah(luck):
                 print("Mikah glances at the figure he hallucinated behind you.  Mikah then declares that you have not seen himself in his final form.")
                 t.sleep(2)
                 print("You ask Mikah to surrender.  Mikah declines.  Despite the odds against him, Mikah sees a way to victory.  His determination puts yours to shame.")
+                pyg.mixer.init()
+                pyg.mixer.music.load("Final Count.mp3")
+                pyg.mixer.music.play()
                 t.sleep(3)
-                print("")
-                                
+                print("A different soundtrack is playing.  Only a super critical hit can stop Mikah now.")
+                t.sleep(2)
+                while mhp = 20:
+                        rg(str(r.randint(1,9)))
+                        e=r.randint(1,10)
+                        j=input("Guess a number between one and ten ")
+                        if e = j:
+                                print("GREAT GUESS!  Mikah has been defeated!  He did not list you as the benficiary of his will...")
+                                mhp = 0
+                                t.sleep(1)
+                                print("The rocket was launched, however Mikah's Aura wasn't around to protect the rocket.  It was intercepted with relative ease by the university.")
+                                with open("final_report.txt", "w", encoding="utf-8") as fr:
+                                        file.write(f"{rg("final_vic")}\n")
+                                        randy=r.randint(1,2)
+                                        if randy = 1:
+                                                file.write(f"{rg("e2")}\n") 
+                                        else:
+                                                file.write(f"{rg(e1)}\n")
+                                        
+                                        file.write(f"{rg("eF")}\n")
+        return(health)
+                                        
 
 gr = True
 pyg.mixer.init()
