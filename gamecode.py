@@ -2,6 +2,7 @@ import random as r
 import time as t
 import tkinter as tk
 import pygame as pyg
+from PIL import Image, ImageSequence, ImageTk
 def rg(a):
         dih = {
             "0": "high command congratulates you for your victory.  It goes on your resume.",
@@ -70,12 +71,78 @@ def menu():
         menubar.add_cascade(label="see map")
         
         root.mainloop()
-        
 
 enemy_catalog={
     "squirell": 20,
     "Pidgeon": 30,
     "Mikah": 80}
+level = 1
+health = 50 + 2*level
+enemy_health=20  
+def mikah(luck):
+        print("You approach true greatness.  The fate of the world rests in your hands.  No pressure")
+        t.sleep(2)
+        print("You go to the top floor of the Blocker building.  There, Mikah stands.  He's 167 cm tall and weighing 119 lbs.")
+        t.sleep(3)
+        print("Mikah turns around, and asks you why you are here.  You claim youre here on business.  Mikah understands.")
+        t.sleep(2)
+        print("Mikah asks: 'why would you, frodo, wanna stop me?  I do not have bad intentions.  I simply want to 100% the game...'")
+        t.sleep(2)
+        print("So be it, Frodo.  You have made a mistake.  I have 1 million power in rise of kingdoms.")
+        pyg.mixer.init()
+        pyg.mixer.music.load("fbs.mp3")
+        pyg.mixer.music.play()
+        t.sleep(1)
+        print("Mikah's aura makes your armies attack's useless.  Only a critical hit can do the trick.")
+        t.sleep(2)
+        mhp = enemy_catalog[Mikah]
+        while mhp > 19:
+                print("You must flip a coin.  Its not like the coin is rigged, which it definitly is.")
+                t.sleep(1)
+                coin=r.randint(1,15)
+                Mikah_luck = luck - 3
+                
+                if luck > (coin + Mikah_luck):
+                        print(f"A lucky hit!  Mikah has {mhp - 20} health left!")
+                        t.sleep(1)
+                else:
+                        print(f"You missed!  Mikah chuckled.  He has {mhp} health left.")
+                        t.sleep(1)
+                        print("Mikah attacks next.  He pulls out an old penny.  It has been rigged to favor the Mikah.  He flips it...")
+                        t.sleep(1)
+                        cf=r.randint(1,2)
+                        ug=input("Heads or Tails? ")
+                        if str(ug) = "Heads" or str(ug) = "Tails":
+                                smth=r.randint(1,4)
+                                if smth = cf:
+                                        print("Mikah's attack backfires!  He takes 20 damage!  Mikah retrieves a Narnia themed bandaid.  It expired.")
+                                        mhp = mhp-20
+                                        t.sleep(2)
+                                        print(f"Mikah has {mhp} health remaining")
+                                elif smth = 3:
+                                        print("Mikah does 10 damage.  Your health insurance declines.")
+                                        health = health - 10
+                                else: 
+                                        print("Mikah does 8 damage.  That may leave a mark.")
+                                        health = health - 8
+                        else:
+                                print("Mikah says you must pick one of the two.  The federal government takes away some of your free will.  Lizard people am I right?")
+                                t.sleep(2)
+                rg(str(r.randint(1,9)))
+                t.sleep(3.67)
+        if mhp = 20:
+                pyg.mixer.music.stop()
+                t.sleep(1)
+                rg("10")
+                t.sleep(1)
+                print("Mikah laughes quietly.  He seems battered and on the verge of giving out.  He also has not slept for a long time...")
+                t.sleep(2)
+                print("Mikah glances at the figure he hallucinated behind you.  Mikah then declares that you have not seen himself in his final form.")
+                t.sleep(2)
+                print("You ask Mikah to surrender.  Mikah declines.  Despite the odds against him, Mikah sees a way to victory.  His determination puts yours to shame.")
+                t.sleep(3)
+                print("")
+                                
 
 gr = True
 pyg.mixer.init()
@@ -94,9 +161,7 @@ print("Anyway, Mikah's forces intercepted your communications!  Mikah has sent a
 t.sleep(2)
 
 
-level = 1
-health = 50 + 2*level
-enemy_health=20
+
 while enemy_health > 0:
     dice=input("guess a number between 1 and 5: ")
     if float(dice) >= 1 and float(dice) <= 5:
