@@ -32,6 +32,89 @@ def rg(a):
         return(statement)
 #hashtag awesome
 
+def play_minigame(luck, items, remaining_dungeons, health):
+    """AI-assisted. Guess a dungeon's hidden number to earn a luck item.
+
+    Return (new_luck, item_name, dungeon_name) on success, otherwise None.
+    The caller owns inventory and dungeon-list updates; inputs stay unchanged.
+    """
+    if not remaining_dungeons:
+        print("All dungeons have already been captured.  Go face mikah you coward.")
+        return None
+    while True:
+        print("Available dungeons: " + ", ".join(remaining_dungeons))
+        selection = input("Choose a dungeon: ").strip().lower()
+        matches = [name for name in remaining_dungeons if name.lower() == selection]
+        if matches:
+            dungeon = matches[0]
+            break
+        print("Choose one of the remaining dungeons.")
+    print("you order your army foward to attack a Mikah Imperial Stronghold.")
+    nSq = r.randint(0,1)
+    nMs = r.randint(0,1)
+    nP = r.randint(0,1)
+    if nP == 1 and nSq == 1:
+            nMs = 0
+    if nSq == 0 and nP == 0:
+            nMs = 1
+    if nP == 0 and nMs == 0:
+            nSq = 1
+    if nSq == 0 and nMs ==0:
+            nP = 1
+    if nSq = 1:
+            sq(health)
+    if nP = 1
+    
+    rewards = {"squirell": ("Zach chestplate", 2), "Pidgeon": ("Campus lucky charm", 3)}
+    item, bonus = rewards.get(dungeon, (f"{dungeon} luck token", 1))
+    if item in items:
+        print("You already own this dungeon's reward.")
+        return None
+    print(f"Dungeon complete! You earned {item} (+{bonus} luck).")
+    return luck + bonus, item, dungeon
+
+def train(level, luck):
+    """AI-assisted. Play rock-paper-scissors for one life or one luck point.
+
+    Return (lives, luck). Ties and losses leave both values unchanged.
+    """
+    choices = ("rock", "paper", "scissors")
+    print("You go to ZACH 212 to train.  The lion doesn't go to the gym, so why should you?")
+    t.sleep(3)
+    print("The robotics club challenges you in a friendly manner.  They send a CLANKER")
+    t.sleep(3)
+    print("The robot imitates an engineering student.  It smells bad.")
+    t.sleep(2)
+    while True:
+        player = input("Training: rock, paper, or scissors? ").strip().lower()
+        if player in choices:
+            break
+        print("Choose rock, paper, or scissors.")
+        #POV lesbians
+    opponent = r.choice(choices)
+    print(f"Your training opponent chose {opponent}.")
+    winning_pairs = {("rock", "scissors"), ("paper", "rock"), ("scissors", "paper")}
+    if player == opponent:
+        print("A tie! Your lives and luck stay the same.  You remain at the bottom of the hypergamy chart.")
+    elif (player, opponent) in winning_pairs:
+        while True:
+            reward = input("You won! gain levels or gain luck? (levels/luck): ").strip().lower()
+            #gabe owners?
+            if reward in ("life", "luck"):
+                break
+            print("Enter life or luck.")
+        if reward == "levels":
+            level = level + 1
+            print(f"You gained 1 level, so you are at {level} levels.  You use a tax loophole so the feds don't tax it.")
+            t.sleep(3)
+            print("You get audited by the IRS.  you consider moving to a tax haven.")
+        else:
+            luck += 1
+            print(f"Luck increased to {luck}.  She still blocked you on chess.com")
+    else:
+        print("You lost this practice round. Brutal.  Try again later, chudlet.")
+    return lives, luck
+
 dl = ["annex", "Evans", "HECC Building", "Thompson Hall", "HALB", "Utility Plant"]
 item_list = ["Spirit Stick", "bookworm's knife", "USB Drive", "keys", "Pure Silicon", "M1902 feild gun"]
 def menu():
@@ -192,76 +275,70 @@ def challenge_mikah(luck, health):
             quit()
         return(health)                                        
 
-gr = True
-pyg.mixer.init()
-pyg.mixer.music.load("sb_goliath.mp3")
-pyg.mixer.music.play()
-
-
-# Keep the script running while the audio plays
-
-print("You are playing as Frodo.  Frodo has been tasked to prevent a mikah takeover.  The reason appears political...")
-t.sleep(2)
-print("You exit Butler Hall, texting John.  He left his backpack there and you have it now. You are being escorted by the corp of cadets")
-print("If you feel unsafe while travelling, call 979-845-6789.  This summons the corp escort services.")
-t.sleep(4)
-print("Anyway, Mikah's forces intercepted your communications!  Mikah has sent a squirell to block your path!")
-t.sleep(2)
-
-
-
-while enemy_health > 0:
-    dice=input("guess a number between 1 and 5: ")
-    if float(dice) >= 1 and float(dice) <= 5:
-        h=r.randint(1,5)
-        if float(dice)==h:
-            print("critical hit!")
-            enemy_health = 0
-            print("enemy defeated in one blow")
-        else:
-            print("you failed to score a critical hit!  Your army attacks:")
-            rh=r.randint(1,5)
-            print(f"You dealt {rh} damage to the enemy!")
-            enemy_health=enemy_health-rh
-            if enemy_health < 0:
-                enemy_health = 0
-            print(f"Enemy has {enemy_health} left")
-            t.sleep(2)
-            print("The enemy attacks!")
-            ea=1
-            health = health - ea
-            print(f"You have {health} HP left, since the enemy did {ea} damage")
-            t.sleep(2)
-            ri=r.randint(-3,-1)
-            if ri == -3:
-                print(rg("b"))
-            elif ri == -2:
-                print(rg("b1"))
-            else:
-                print(rg("b2"))
-            t.sleep(1)
-    else:
-        print("you tried to pick a number outside the allowed constraints...")
-        
-    
-if enemy_health <= 0:
-    gr = False
-    pyg.mixer.music.stop()
-    print("You won the battle, but did you win the war...")
-    t.sleep(3)
-    print("XP gained: 5.  You leveled up! Due to Democrat Fiscal policy, your levels were given away")
-    pyg.mixer.music.load("wse.mp3")
+def sqf():
+    #squirell fight!  do you have the nuts?
+    pyg.mixer.init()
+    pyg.mixer.music.load("sb_goliath.mp3")
     pyg.mixer.music.play()
-    t.sleep(4)
-    print('Incoming transmission...')
-    t.sleep(4)
-    print("Status Report:  Current Map of A&M as of 11/20/2026")
-    t.sleep(2)
-    root = tk.Tk()
-    img = tk.PhotoImage(file="image.png")
-    #mikah
-    label = tk.Label(root, image=img)
-    label.image = img
-    label.pack()
-    #mikah
-    root.mainloop()
+    enemy_health = enemy_catalog["squirell"]
+    while enemy_health > 0:
+        dice=input("guess a number between 1 and 5: ")
+        if float(dice) >= 1 and float(dice) <= 5:
+            h=r.randint(1,5)
+            if float(dice)==h:
+                print("critical hit!")
+                enemy_health = 0
+                print("enemy defeated in one blow")
+            else:
+                print("you failed to score a critical hit!  Your army attacks:")
+                rh=r.randint(1,5)
+                print(f"You dealt {rh} damage to the enemy!")
+                enemy_health=enemy_health-rh
+                if enemy_health < 0:
+                    enemy_health = 0
+                print(f"Enemy has {enemy_health} left")
+                t.sleep(2)
+                print("The enemy attacks!")
+                ea=1
+                health = health - ea
+                print(f"You have {health} HP left, since the enemy did {ea} damage")
+                t.sleep(2)
+                ri=r.randint(-3,-1)
+                if ri == -3:
+                    print(rg("b"))
+                elif ri == -2:
+                    print(rg("b1"))
+                else:
+                    print(rg("b2"))
+                t.sleep(1)
+        else:
+            print("you tried to pick a number outside the allowed constraints...")    
+    if enemy_health <= 0:
+        gr = False
+        pyg.mixer.music.stop()
+        print("You won the battle, but did you win the war...")
+        t.sleep(3)
+        print("XP gained: 5.  You leveled up! Due to Democrat Fiscal policy, your levels were given away")
+        pyg.mixer.music.load("wse.mp3")
+        pyg.mixer.music.play()
+        t.sleep(4)
+        print('Incoming transmission...')
+        t.sleep(4)
+        print("Status Report:  Current Map of A&M as of 11/20/2026")
+        t.sleep(2)
+        root = tk.Tk()
+        img = tk.PhotoImage(file="image.png")
+        #mikah
+        label = tk.Label(root, image=img)
+        label.image = img
+        label.pack()
+        #mikah
+        root.mainloop
+        #something
+        sl = loot["squirell"]
+        itembag.append(sl)
+        kill_log.append("squirell")
+        print(f"you loot {loot["squirell"]} from the squirell.  (s)he was vaccinated.")
+        t.sleep(2)
+        
+    return level, itembag, kill_log
