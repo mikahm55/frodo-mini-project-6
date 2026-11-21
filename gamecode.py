@@ -32,6 +32,8 @@ def rg(a):
         return(statement)
 #hashtag awesome
 
+dl = ["annex", "Evans", "HECC Building", "Thompson Hall", "HALB", "Utility Plant"]
+item_list = ["Spirit Stick", "bookworm's knife", "USB Drive", "keys", "Pure Silicon", "M1902 feild gun"]
 def menu():
         root = tk.Tk()
         root.title("Tkinter Menu Example")
@@ -79,7 +81,7 @@ enemy_catalog={
 level = 1
 health = 50 + 2*level
 enemy_health=20  
-def mikah(luck, health):
+def challenge_mikah(luck, health):
         print("You approach true greatness.  The fate of the world rests in your hands.  No pressure")
         t.sleep(5)
         print("You go to the top floor of the Blocker building.  There, Mikah stands.  He's 167 cm tall and weighing 119 lbs.")
