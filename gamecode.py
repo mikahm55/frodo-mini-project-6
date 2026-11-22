@@ -2,7 +2,7 @@ import random as r
 import time as t
 import tkinter as tk
 import pygame as pyg
-from PIL import Image, ImageSequence, ImageTk
+
 def rg(a):
         dih = {
             "0": "high command congratulates you for your victory.  It goes on your resume.",
@@ -25,98 +25,18 @@ def rg(a):
             "eL": "Mikahs rocket hits Mikahs opps.  Mikah's opps quickly switch sides, and Mikah rules the world by 2050.  Glory to Mikah.",
             "b": "The squirell looks at you with anger. Mikah bribed it with a fry",
             "b1": "The squirell has webassign homework to do.  It fights you anyway",
-            "b2": "The squirell reads some feminist literature. It is 8 inches tall at most."
-            }
+            "b2": "The squirell reads some feminist literature. It is 8 inches tall at most.",
+            "p": "you remember the brainrot pigeon videos.  so does the pigeon.",
+            "p1": "the pigeon takes a crap on your car while you weren't looking.  Chirp Chirp, Chud.",
+            "p2": "the pigeon looks at you with disgust and hatred.  Mikah accepted it for who it was, apparently."}
         
         statement=print(dih[a])
         return(statement)
 #hashtag awesome
 
-def play_minigame(luck, items, remaining_dungeons, health):
-    """AI-assisted. Guess a dungeon's hidden number to earn a luck item.
+def ts():
+    print("the button works")
 
-    Return (new_luck, item_name, dungeon_name) on success, otherwise None.
-    The caller owns inventory and dungeon-list updates; inputs stay unchanged.
-    """
-    if not remaining_dungeons:
-        print("All dungeons have already been captured.  Go face mikah you coward.")
-        return None
-    while True:
-        print("Available dungeons: " + ", ".join(remaining_dungeons))
-        selection = input("Choose a dungeon: ").strip().lower()
-        matches = [name for name in remaining_dungeons if name.lower() == selection]
-        if matches:
-            dungeon = matches[0]
-            break
-        print("Choose one of the remaining dungeons.")
-    print("you order your army foward to attack a Mikah Imperial Stronghold.")
-    nSq = r.randint(0,1)
-    nMs = r.randint(0,1)
-    nP = r.randint(0,1)
-    if nP == 1 and nSq == 1:
-            nMs = 0
-    if nSq == 0 and nP == 0:
-            nMs = 1
-    if nP == 0 and nMs == 0:
-            nSq = 1
-    if nSq == 0 and nMs ==0:
-            nP = 1
-    if nSq = 1:
-            sq(health)
-    if nP = 1
-    
-    rewards = {"squirell": ("Zach chestplate", 2), "Pidgeon": ("Campus lucky charm", 3)}
-    item, bonus = rewards.get(dungeon, (f"{dungeon} luck token", 1))
-    if item in items:
-        print("You already own this dungeon's reward.")
-        return None
-    print(f"Dungeon complete! You earned {item} (+{bonus} luck).")
-    return luck + bonus, item, dungeon
-
-def train(level, luck):
-    """AI-assisted. Play rock-paper-scissors for one life or one luck point.
-
-    Return (lives, luck). Ties and losses leave both values unchanged.
-    """
-    choices = ("rock", "paper", "scissors")
-    print("You go to ZACH 212 to train.  The lion doesn't go to the gym, so why should you?")
-    t.sleep(3)
-    print("The robotics club challenges you in a friendly manner.  They send a CLANKER")
-    t.sleep(3)
-    print("The robot imitates an engineering student.  It smells bad.")
-    t.sleep(2)
-    while True:
-        player = input("Training: rock, paper, or scissors? ").strip().lower()
-        if player in choices:
-            break
-        print("Choose rock, paper, or scissors.")
-        #POV lesbians
-    opponent = r.choice(choices)
-    print(f"Your training opponent chose {opponent}.")
-    winning_pairs = {("rock", "scissors"), ("paper", "rock"), ("scissors", "paper")}
-    if player == opponent:
-        print("A tie! Your lives and luck stay the same.  You remain at the bottom of the hypergamy chart.")
-    elif (player, opponent) in winning_pairs:
-        while True:
-            reward = input("You won! gain levels or gain luck? (levels/luck): ").strip().lower()
-            #gabe owners?
-            if reward in ("life", "luck"):
-                break
-            print("Enter life or luck.")
-        if reward == "levels":
-            level = level + 1
-            print(f"You gained 1 level, so you are at {level} levels.  You use a tax loophole so the feds don't tax it.")
-            t.sleep(3)
-            print("You get audited by the IRS.  you consider moving to a tax haven.")
-        else:
-            luck += 1
-            print(f"Luck increased to {luck}.  She still blocked you on chess.com")
-    else:
-        print("You lost this practice round. Brutal.  Try again later, chudlet.")
-    return lives, luck
-
-dl = ["annex", "Evans", "HECC Building", "Thompson Hall", "HALB", "Utility Plant"]
-item_list = ["Spirit Stick", "bookworm's knife", "USB Drive", "keys", "Pure Silicon", "M1902 feild gun"]
 def menu():
         root = tk.Tk()
         root.title("Tkinter Menu Example")
@@ -147,13 +67,14 @@ def menu():
         
         rules = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Rules", menu=rules)
-        rules.add_command(label="See Rules", command=see_rules)
+        rules.add_command(label="See Rules", command=ts)
         rules.add_command(label="Rodrick Rules", command=ts)
         rules.add_command(label="Exit", command=root.quit)
         rules.add_separator()
         
         status = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="see map")
+        status.add_command(label="in progress", command = ts)
         
         root.mainloop()
 
@@ -161,10 +82,16 @@ enemy_catalog={
     "squirell": 20,
     "Pidgeon": 30,
     "Mikah": 80}
+
+loot={
+    "squirell": "nuts and a fry",
+    "mikah loyalist": "wallet",
+    "pigeon": "shiny pebbles"}
+
 level = 1
 health = 50 + 2*level
 enemy_health=20  
-def challenge_mikah(luck, health):
+def mikah(luck, health):
         print("You approach true greatness.  The fate of the world rests in your hands.  No pressure")
         t.sleep(5)
         print("You go to the top floor of the Blocker building.  There, Mikah stands.  He's 167 cm tall and weighing 119 lbs.")
@@ -273,14 +200,25 @@ def challenge_mikah(luck, health):
             rg("eL")
             t.sleep(4)
             quit()
-        return(health)                                        
+        return(health)
+                                        
+
+
+itembag = []
+kill_log = []
+mikah(2,70)
+
 
 def sqf():
-    #squirell fight!  do you have the nuts?
+    
+    enemy_health = enemy_catalog["squirell"]
+
     pyg.mixer.init()
     pyg.mixer.music.load("sb_goliath.mp3")
     pyg.mixer.music.play()
-    enemy_health = enemy_catalog["squirell"]
+
+
+    # Keep the script running while the audio plays
     while enemy_health > 0:
         dice=input("guess a number between 1 and 5: ")
         if float(dice) >= 1 and float(dice) <= 5:
@@ -312,33 +250,193 @@ def sqf():
                     print(rg("b2"))
                 t.sleep(1)
         else:
-            print("you tried to pick a number outside the allowed constraints...")    
+            print("you tried to pick a number outside the allowed constraints...")
+        
+    
     if enemy_health <= 0:
-        gr = False
+        #defeated
         pyg.mixer.music.stop()
         print("You won the battle, but did you win the war...")
         t.sleep(3)
-        print("XP gained: 5.  You leveled up! Due to Democrat Fiscal policy, your levels were given away")
-        pyg.mixer.music.load("wse.mp3")
-        pyg.mixer.music.play()
-        t.sleep(4)
-        print('Incoming transmission...')
-        t.sleep(4)
-        print("Status Report:  Current Map of A&M as of 11/20/2026")
-        t.sleep(2)
-        root = tk.Tk()
-        img = tk.PhotoImage(file="image.png")
-        #mikah
-        label = tk.Label(root, image=img)
-        label.image = img
-        label.pack()
-        #mikah
-        root.mainloop
-        #something
         sl = loot["squirell"]
         itembag.append(sl)
         kill_log.append("squirell")
         print(f"you loot {loot["squirell"]} from the squirell.  (s)he was vaccinated.")
         t.sleep(2)
         
-    return level, itembag, kill_log
+    return level, itembag, kill_log, health
+
+def pigeon(health):
+    pHP = 30
+    print("a pigeon dives for your hair in the name of Mikah.")
+    pyg.mixer.init()
+    pyg.mixer.music.load("sb_goliath.mp3")
+    pyg.mixer.music.play()
+    t.sleep(2)
+    while pHP > 30:
+        try:
+            ber=int(input("type an even or odd number as a number: "))
+            con=r.randint(0,1)
+            if con == (ber % 2):
+                print("Direct hit!  You do 5 damage to the pigeon.")
+                pHP = pHP-5
+                t.sleep(3)
+                print(f"the pigeon has {pHP} health left.")
+            else:
+                print("Your attack missed!  Your army attacks:")
+                t.sleep(3)
+                atk=r.randint(1,5)
+                pHP = pHP - atk
+                print(f"Your army attacks, doing {atk} damage.  the pigeon has like {pHP} health left.")
+                t.sleep(3)
+                print("the pigeon attacks!  It dives toward you, dealing 3 damage!  BROOOOOOO!")
+                health = health - 3
+                print(f"You have {health} HP left.")
+                t.sleep(2)
+                pdi= r.randint(0,2)
+                if pdi == 0:
+                    rg("p")
+                elif pdi == 1:
+                    rg("p1")
+                else:
+                    rg("p2")
+
+        except ValueError:
+            print("You ain't all that and a bag of fries lil bro...")
+            t.sleep(3)
+            health = health - 3
+            print("The pigeon takes the initiative since you wasted a turn, dealing 3 damage!")
+            t.sleep(2)
+            print(f"You have {health} HP left.  The pigeon grows bolder.")
+    if pHP <= 0:
+        print("The pigeon has been defeated!")
+        pyg.mixer.music.stop()
+        t.sleep(3)
+        pyg.mixer.music.load("wse.mp3")
+        pyg.mixer.music.play()
+        print("You get a shiny pebble from the pigeon.  You lose it immediatly.")
+    return health
+
+
+
+def play_minigame(luck, items, remaining_dungeons, health):
+    """AI-assisted. Guess a dungeon's hidden number to earn a luck item.
+
+    Return (new_luck, item_name, dungeon_name) on success, otherwise None.
+    The caller owns inventory and dungeon-list updates; inputs stay unchanged.
+    """
+    if not remaining_dungeons:
+        print("All dungeons have already been captured.  Go face mikah you coward.")
+        return None
+    while True:
+        print("Available dungeons: " + ", ".join(remaining_dungeons))
+        selection = input("Choose a dungeon: ").strip().lower()
+        matches = [name for name in remaining_dungeons if name.lower() == selection]
+        if matches:
+            dungeon = matches[0]
+            break
+        print("Choose one of the remaining dungeons.")
+    print("you order your army foward to attack a Mikah Imperial Stronghold.")
+    nSq = r.randint(0,1)
+    nMs = r.randint(0,1)
+    nP = r.randint(0,1)
+    if nP == 1 and nSq == 1:
+            nMs = 0
+    if nSq == 0 and nP == 0:
+            nMs = 1
+    if nP == 0 and nMs == 0:
+            nSq = 1
+    if nSq == 0 and nMs ==0:
+            nP = 1
+    if nSq == 1:
+            sqf(health)
+    if nP == 1:
+        pigeon(health)
+    if nMs == 1:
+
+    rewards = {"squirell": ("Zach chestplate", 2), "Pidgeon": ("Campus lucky charm", 3)}
+    item, bonus = rewards.get(dungeon, (f"{dungeon} luck token", 1))
+    if item in items:
+        print("You already own this dungeon's reward.")
+        return None
+    print(f"Dungeon complete! You earned {item} (+{bonus} luck).")
+    return luck + bonus, item, dungeon
+
+def train(level, luck):
+    """AI-assisted. Play rock-paper-scissors for one life or one luck point.
+
+    Return (lives, luck). Ties and losses leave both values unchanged.
+    """
+    choices = ("rock", "paper", "scissors")
+    print("You go to ZACH 212 to train.  The lion doesn't go to the gym, so why should you?")
+    t.sleep(3)
+    print("The robotics club challenges you in a friendly manner.  They send a CLANKER")
+    t.sleep(3)
+    print("The robot imitates an engineering student.  It smells bad.")
+    t.sleep(2)
+    while True:
+        player = input("Training: rock, paper, or scissors? ").strip().lower()
+        if player in choices:
+            break
+        print("Choose rock, paper, or scissors.")
+        #POV lesbians
+    opponent = r.choice(choices)
+    print(f"Your training opponent chose {opponent}.")
+    winning_pairs = {("rock", "scissors"), ("paper", "rock"), ("scissors", "paper")}
+    if player == opponent:
+        print("A tie! Your lives and luck stay the same.  You remain at the bottom of the hypergamy chart.")
+    elif (player, opponent) in winning_pairs:
+        while True:
+            reward = input("You won! gain levels or gain luck? (levels/luck): ").strip().lower()
+            #gabe owners?
+            if reward in ("life", "luck"):
+                break
+            print("Enter life or luck.")
+        if reward == "levels":
+            level = level + 1
+            print(f"You gained 1 level, so you are at {level} levels.  You use a tax loophole so the feds don't tax it.")
+            t.sleep(3)
+            print("You get audited by the IRS.  you consider moving to a tax haven.")
+        else:
+            luck += 1
+            print(f"Luck increased to {luck}.  She still blocked you on chess.com")
+    else:
+        print("You lost this practice round. Brutal.  Try again later, chudlet.")
+    return lives, luck
+
+dl = ["annex", "Evans", "HECC Building", "Thompson Hall", "HALB", "Utility Plant"]
+item_list = ["Spirit Stick", "bookworm's knife", "USB Drive", "keys", "Pure Silicon", "M1902 feild gun"]
+
+
+def annex():
+    print("You enter the Mikah stronghold of the annex building.  Sporadic fighting erupts around you and your small task force.")
+    t.sleep(5)
+    print("You recieve a radio message from the Dean: You must seize some spirit sticks stashed somewhere safe.")
+    t.sleep(4)
+    print("heres a pop up explaining a spirit stick, please read:")
+    t.sleep(3)
+    root = tk.Tk()
+    img = tk.PhotoImage(file="annexobj.png")
+    #mikah
+    label = tk.Label(root, image=img)
+    label.image = img
+    label.pack()
+    #mikah
+    root.mainloop
+    
+
+    
+    print("XP gained: 5.  You leveled up! Due to Democrat Fiscal policy, your levels were given away")
+    t.sleep(4)
+    print('Incoming transmission...')
+    t.sleep(4)
+    print("Status Report:  Current Map of A&M as of 11/20/2026")
+    t.sleep(2)
+    root = tk.Tk()
+    img = tk.PhotoImage(file="image.png")
+    #mikah
+    label = tk.Label(root, image=img)
+    label.image = img
+    label.pack()
+    #mikah
+    root.mainloop
