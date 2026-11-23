@@ -85,7 +85,7 @@ enemy_catalog={
 
 loot={
     "squirell": "nuts and a fry",
-    "mikah loyalist": "wallet",
+    "mikah": "wallet",
     "pigeon": "shiny pebbles"}
 
 level = 1
@@ -175,7 +175,7 @@ def mikah(luck, health):
                         if e == j:
                                 print("GREAT GUESS!  Mikah has been defeated!  He did not list you as the benficiary of his will...")
                                 mhp = 0
-                                t.sleep(1)
+                                t.sleep(5)
                                 print("The rocket was launched, however Mikah's Aura wasn't around to protect the rocket.  It was intercepted with relative ease by the university.")
                                 with open("final_report.txt", "w", encoding="utf-8") as fr:
                                         fr.write(f"{rg('final_vic')}\n")
@@ -188,7 +188,7 @@ def mikah(luck, health):
                                         fr.write(f"{rg('eF')}\n")
                         else:
                             
-                            print("You guessed wrong.  Mikah counterattacks.  It does 5 damage.")
+                            print("You guessed wrong.  Mikah counterattacks.  He does 5 damage.")
                             health=health-5
                             t.sleep(3)
                             print(f"You have {health} HP remaining.  Use it wiser.")
@@ -206,7 +206,6 @@ def mikah(luck, health):
 
 itembag = []
 kill_log = []
-mikah(2,70)
 
 
 def sqf():
@@ -338,21 +337,11 @@ def play_minigame(luck, items, remaining_dungeons, health):
         print("Choose one of the remaining dungeons.")
     print("you order your army foward to attack a Mikah Imperial Stronghold.")
     nSq = r.randint(0,1)
-    nMs = r.randint(0,1)
     nP = r.randint(0,1)
-    if nP == 1 and nSq == 1:
-            nMs = 0
-    if nSq == 0 and nP == 0:
-            nMs = 1
-    if nP == 0 and nMs == 0:
-            nSq = 1
-    if nSq == 0 and nMs ==0:
-            nP = 1
-    if nSq == 1:
-            sqf(health)
-    if nP == 1:
-        pigeon(health)
-    if nMs == 1:
+
+    if selection == "annex" and "annex" not in remaining_dungeons:
+            annex(health, luck)
+            
 
     rewards = {"squirell": ("Zach chestplate", 2), "Pidgeon": ("Campus lucky charm", 3)}
     item, bonus = rewards.get(dungeon, (f"{dungeon} luck token", 1))
@@ -408,7 +397,7 @@ dl = ["annex", "Evans", "HECC Building", "Thompson Hall", "HALB", "Utility Plant
 item_list = ["Spirit Stick", "bookworm's knife", "USB Drive", "keys", "Pure Silicon", "M1902 feild gun"]
 
 
-def annex():
+def annex(health, level):
     print("You enter the Mikah stronghold of the annex building.  Sporadic fighting erupts around you and your small task force.")
     t.sleep(5)
     print("You recieve a radio message from the Dean: You must seize some spirit sticks stashed somewhere safe.")
@@ -423,8 +412,10 @@ def annex():
     label.pack()
     #mikah
     root.mainloop
-    
-
+        
+    sqf(health)
+    health = health + 10
+    pigeon(health)
     
     print("XP gained: 5.  You leveled up! Due to Democrat Fiscal policy, your levels were given away")
     t.sleep(4)
@@ -440,3 +431,18 @@ def annex():
     label.pack()
     #mikah
     root.mainloop
+    
+    print("Queen Revillie herself gives you 2 levels because you were so brave.")
+    level = level + 2
+    health = health + 2*level
+    item_bag.append(item_list[0])
+    return(health, level)
+
+def evans(health, level):
+        print("You enter through a window like a boss. All the shy people are unimpressed.")
+        t.sleep(3)
+        print("your orders is to find the knife of a  bookworm.  Someone can't open a package...")
+        squirel(health, level)
+        print("With the first floor cleared, you move to the 4th level.  Thats where the heats at.")
+        t.sleep(2)
+        pigeon(health, level)
