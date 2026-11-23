@@ -18,6 +18,8 @@ health = 50
 level = 0
 luck = 1
 
+d_responses = ["You feel that Mikah is your superior.", "You see a fire in Mikah's eyes.  Specifically the world on fire.", "Mikah checks his phone.  She has not responded", "You get a notification.  Its from bro asking if 19 and 13 is an acceptable age gap", "A thunderstorm warning has been issued for your area. You dress nicely", "Mikah makes a joke.  It can't be aired on CNN","Mikah is smarter than you.  You contemplate surrender", "Mikah sends an SOS signal.  He is left on read", "You check your phone. A canvas notification!  You failed the last engineering quiz.", "This battle seems to have developed not necessarily to Mikahs advantage.", "Mikahs rocket, and with it his dreams, have shattered.  You feel victorius, since you saved A&M", "Mikah flees north, towards hillsboro.  The fight is not over yet.  Mikah will return in GAME 2! Comes out when Half life 3 does.", "The squirell looks at you with anger. Mikah bribed it with a fry", "The squirell has webassign homework to do.  It fights you anyway", "The squirell reads some feminist literature. It is 8 inches tall at most.", "the pigeon takes a crap on your car while you weren't looking.  Chirp Chirp, Chud.", "the pigeon looks at you with disgust and hatred.  You feel inferior"]
+
 def menu():
         root = tk.Tk()
         root.title("Tkinter Menu Example")
@@ -33,7 +35,7 @@ def menu():
         
         # 3. Add clickable items and a divider to the "File" menu
         file_menu.add_command(label="Quit Game", command=sys.quit)
-        file_menu.add_command(label="save", command=ts)
+        file_menu.add_command(label="save", command=)
         file_menu.add_separator()
         file_menu.add_command(label="Exit", command=root.quit)
         
@@ -48,14 +50,14 @@ def menu():
         
         rules = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="Rules", menu=rules)
-        rules.add_command(label="See Rules", command=)
-        rules.add_command(label="Rodrick Rules", command=)
+        rules.add_command(label="See Rules", command=print("Don't lose"))
+        rules.add_command(label="Rodrick Rules", command="niche reference")
         rules.add_command(label="Exit", command=root.quit)
         rules.add_separator()
         
         status = tk.Menu(menubar, tearoff=0)
         menubar.add_cascade(label="see map")
-        status.add_command(label="in progress", command = ts)
+        status.add_command(label="quit game", command = sys.exit)
         
         root.mainloop()
 
@@ -228,8 +230,8 @@ def play_song(enemy):
         pyg.mixer.music.play(loops=67)
 
 def frodo_attack(level):
-    atk=r.randint(1,3)+level*2
-    print(f"you attack, dealing {atk} damage")
+    atk=r.randint(1,3)+level
+    print(f"you attack, dealing {atk} damage.")
     return atk
 
 
@@ -239,7 +241,7 @@ def use_item():
 
 def level_up(level, new):
     level = level + new
-    print("you leveled up!  ")
+    print("you leveled up!  they grow up so fast...")
 
 def start_turn():
 
@@ -250,10 +252,13 @@ def utility_plant(health, level,damage):
 def choose_function(name):
 
 def update_log():
+    with open("log", "w") as log:
 
 
 
 def credit(win):
+    with open("credit.txt", "r") as c:
+        return None
 
 def print_log():
 
@@ -263,3 +268,27 @@ def start():
     execpt: 
 
 def check_coin():
+    cf=r.randint(1,2)
+    ug=input("Heads or Tails? ")
+    if str(ug) == "Heads" or str(ug) == "Tails":
+        smth=r.randint(1,4)
+        if smth == cf:
+            print("Mikah's attack backfires!  He takes 10 damage!  Mikah retrieves a Narnia themed bandaid.  It expired.")
+            mhp = mhp-10
+            t.sleep(4)
+            print(f"Mikah has {mhp} health remaining.  You have {health} HP")
+        elif smth == 3:
+            health = health - 8
+            print(f"Mikah does 8 damage.  Your health insurance declines.  You have {health} HP left")
+                                        
+        else: 
+            health = health - 5
+            print(f"Mikah does 5 damage.  That may leave a mark.  You have {health} HP left.")
+                                        
+    else:
+        print("Mikah says you must pick one of the two.  The federal government takes away some of your free will.  Lizard people am I right?")
+        t.sleep(5)
+        health=health-4
+        print(f"Without your free will, you take 4 damage.  You now have {health} HP left.")
+        t.sleep(4)
+        (str(r.randint(1,9)))
