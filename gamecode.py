@@ -267,7 +267,13 @@ def start():
 
     execpt: 
 
-def check_coin():
+def check_coin(frodo_luck):
+        '''Team written-Taylor
+        Receives frodo's luck and returns true if the coin flip was successful and false if it wasn't.'''
+        result = r.random()
+        range = 0.5 + frodo_luck
+        return result < range
+        
     cf=r.randint(1,2)
     ug=input("Heads or Tails? ")
     if str(ug) == "Heads" or str(ug) == "Tails":
